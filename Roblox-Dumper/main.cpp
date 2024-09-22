@@ -1,3 +1,10 @@
+
+// Credits: Blizex, Atrexus (Idea, Main code @ https://github.com/atrexus/vulkan
+
+
+
+
+
 #include <Windows.h>
 #include <winternl.h>
 #include <Psapi.h>
@@ -6,35 +13,22 @@
 #include <time.h>
 #include <iostream>
 #include <vector>
-
 #pragma comment(lib, "Shlwapi.lib")
-
 #ifndef STATUS_INFO_LENGTH_MISMATCH
 #define STATUS_INFO_LENGTH_MISMATCH ((NTSTATUS)0xC0000004L)
 #endif
-
 typedef NTSTATUS(NTAPI* pNtOpenProcess)(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, CLIENT_ID*);
 typedef NTSTATUS(NTAPI* pNtQuerySystemInformation)(SYSTEM_INFORMATION_CLASS, PVOID, ULONG, PULONG);
 typedef NTSTATUS(NTAPI* pNtClose)(HANDLE);
 typedef NTSTATUS(NTAPI* pNtReadVirtualMemory)(HANDLE, PVOID, PVOID, SIZE_T, PSIZE_T);
-
 #ifndef NT_SUCCESS
 #define NT_SUCCESS(Status) (((NTSTATUS)(Status)) >= 0)
 #endif
 
-// Credits: Blizex, Atrexus (Idea, Main code @ https://github.com/atrexus/vulkan
-
-
-
-
-
-void SetConsoleColor(WORD color) {
+void ConsoleColor(WORD color) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, color);
 }
-
-
-
 
 
 class Dumper { // Do not modify any sort of code in this other than strings, to prevent it from breaking.
@@ -48,7 +42,7 @@ public:
     bool UseTimestamp = false;
 
     bool Create() {
-        SetConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+        ConsoleColor(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
         std::wcout << L"loading ntdll and resolving nt..." << std::endl;
         HMODULE hNtdll = LoadLibraryW(L"ntdll.dll");
