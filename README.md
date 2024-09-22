@@ -15,4 +15,4 @@ After getting the dump, you can use IDA or another app to analyze the dump.
 
 # Credits
 Blizex - Development of the dumper.
-Atrexus - Original idea and creation (https://github.com/atrexus/vulkan/).
+Atrexus - Original idea and creation [Github](https://github.com/atrexus/vulkan/).
